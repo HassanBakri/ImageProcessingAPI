@@ -20,7 +20,7 @@ async function CreateTumb(filename: string, width: number, heigh: number, ext: s
 }
 
 const ThumbMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-  const image_name: string = req.query.Imagename as string;
+  const image_name: string = req.query.imagename as string;
   const width: number = parseInt(req.query.width as string);
   const heigh: number = parseInt(req.query.heigh as string);
   const thumbs_dir = 'thumbs';
