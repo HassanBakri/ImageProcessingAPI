@@ -35,7 +35,7 @@ const ThumbMiddleware = async (req: Request, res: Response, next: NextFunction) 
   const thumbpath: string = path.resolve('./', thumbs_dir, filename);
   console.log('Requesting Thumb file :' + thumbpath);
   try {
-    res.setHeader('Content-Type', 'image/jpg');
+    res.type('png')
     const result = fs.readFileSync(thumbpath, { flag: 'r' });
     console.log('File Length :' + result.length);
     res.send(result);
@@ -58,7 +58,7 @@ const ThumbMiddleware = async (req: Request, res: Response, next: NextFunction) 
   try {
     newthumb = await CreateTumb(image_name, width, heigh, image_extension, full_dir);
     console.log('Sending the thumb after being Created');
-    res.setHeader('Content-Type', 'image/jpg');
+    res.type('png')
     res.send(newthumb);
     const fd = fs.openSync(thumbpath, 'a+');
     fs.write(fd, newthumb, (err) => {

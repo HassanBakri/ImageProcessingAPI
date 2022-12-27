@@ -6,14 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const ThumbMiddleware_1 = __importDefault(require("../middleware/ThumbMiddleware"));
 const index_1 = __importDefault(require("../index"));
-describe("EndPoint Tests", () => {
+describe('EndPoint Tests', () => {
     const request = (0, supertest_1.default)(index_1.default);
     it('gets the api GetThumb', async () => {
         const response = await request.get('/GetThumb?Imagename=fjord&width=300&heigh=200');
         expect(response.status).toBe(200);
     });
 });
-describe("Functionality Tests", () => {
+describe('Functionality Tests', () => {
     const image_name = 'palmtunnel';
     const width = 200;
     const heigh = 200;
@@ -26,7 +26,7 @@ describe("Functionality Tests", () => {
     });
     // it('Expect to throw Exception.  when requesting not existing Image ',async ()=>{
     //     const result=await thumb.CreateTumb('image_name', width, heigh, image_extension, full_dir)
-    //     expect( 
+    //     expect(
     //         async function (){
     //         await thumb.CreateTumb('image_name', width, heigh, image_extension, full_dir)}
     //         )
