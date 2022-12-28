@@ -10,12 +10,13 @@
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": "2017",
+    "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "env": {
     "node": true,
-    "es2022": true
+    "es2022": true,
+    "jasmine": true
   },
   "globals": {
     "NodeJS": true
