@@ -33,12 +33,20 @@ async function CreateTumb(filename: string, width: number, heigh: number, ext: s
 }
 
 const ThumbMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+  if ((req.query.imagename as string) === undefined || isNaN(parseInt(req.query.width as string)) || isNaN(parseInt(req.query.heigh as string))) {
+    res.setHeader('Content-Type', 'text/html');
+    res.send('Malformed request , please make sure you pass all parameters ,imagename, width   and heigh');
+    console.log('Malformed request');
+    next();
+    return;
+  }
   const image_name: string = req.query.imagename as string;
   const width: number = parseInt(req.query.width as string);
   const heigh: number = parseInt(req.query.heigh as string);
   const thumbs_dir = 'thumbs';
   const full_dir = 'full';
   const image_extension = '.jpg';
+
   //1- check if the image already exist
   //1.1- check if the thumb is already exist
   //1.1.1- return the thumb
@@ -64,6 +72,7 @@ const ThumbMiddleware = async (req: Request, res: Response, next: NextFunction) 
       //throw err;
       res.status(500).send(err);
       next();
+
       //Exception Must Be Logged in Order to discover the issue
     }
   }

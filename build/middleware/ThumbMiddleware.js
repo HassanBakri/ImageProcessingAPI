@@ -38,6 +38,13 @@ async function CreateTumb(filename, width, heigh, ext, from, to) {
     return sh;
 }
 const ThumbMiddleware = async (req, res, next) => {
+    if (req.query.imagename === undefined || isNaN(parseInt(req.query.width)) || isNaN(parseInt(req.query.heigh))) {
+        res.setHeader('Content-Type', 'text/html');
+        res.send('Malformed request , please make sure you pass all parameters ,imagename, width   and heigh');
+        console.log('Malformed request');
+        next();
+        return;
+    }
     const image_name = req.query.imagename;
     const width = parseInt(req.query.width);
     const heigh = parseInt(req.query.heigh);
